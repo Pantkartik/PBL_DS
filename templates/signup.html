@@ -1,0 +1,63 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Sign Up - Web Scraper</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><style>body { background: linear-gradient(135deg,#00c6ff 0%,#007bff 100%); min-height: 100vh; } .signup-card { max-width: 480px; margin: 60px auto; box-shadow: 0 8px 32px rgba(0,0,0,0.18); border-radius: 18px; overflow: hidden; animation: fadeIn 1.2s; } .signup-header { background: linear-gradient(90deg,#00c6ff,#007bff); color: #fff; padding: 36px 24px 20px 24px; } .signup-title { font-size: 2.2rem; font-weight: 700; letter-spacing: 1px; } .signup-form { padding: 28px; } .form-label { font-weight: 600; } .btn-primary { background: linear-gradient(90deg,#00c6ff,#007bff); border: none; font-weight: 600; } .btn-primary:hover { background: linear-gradient(90deg,#0093c4,#0056b3); } .fa-user, .fa-envelope, .fa-lock { color: #00c6ff; margin-right: 8px; } .password-strength { height: 8px; border-radius: 4px; margin-top: 4px; background: #e5e7eb; } .strength-bar { height: 100%; border-radius: 4px; transition: width 0.3s; } .toggle-password { cursor: pointer; position: absolute; right: 16px; top: 38px; color: #007bff; } @keyframes fadeIn { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }</style></head><body><div class="signup-card bg-white"><div class="signup-header text-center"><div class="signup-title">Sign Up</div><div class="lead">Create your account to use the Web Scraper</div></div><form method="post" class="signup-form" novalidate autocomplete="on">
+    <div class="mb-3 position-relative">
+        <label for="email" class="form-label floating-label"><i class="fa fa-envelope"></i> Email</label>
+        {{ form.email(class="form-control", id="email", placeholder="Enter your email", autocomplete="email", aria_label="Email", required=True) }}
+        <div class="invalid-feedback" id="emailFeedback">Enter a valid email address.</div>
+    </div>
+    <div class="mb-3 position-relative">
+        <label for="password" class="form-label floating-label"><i class="fa fa-lock"></i> Password</label>
+        {{ form.password(class="form-control", id="password", placeholder="Create a password", autocomplete="new-password", aria_label="Password", required=True) }}
+        <span class="toggle-password" onclick="togglePassword('password')"><i class="fa fa-eye"></i></span>
+        <div class="password-strength" id="strengthBar"><div class="strength-bar" id="strengthBarFill" style="width:0%;background:#e5e7eb;"></div></div>
+        <div class="invalid-feedback" id="passwordFeedback">Password must be at least 8 characters.</div>
+    </div>
+    <div class="mb-3 position-relative">
+        <label for="confirm_password" class="form-label floating-label"><i class="fa fa-lock"></i> Confirm Password</label>
+        {{ form.confirm_password(class="form-control", id="confirm_password", placeholder="Confirm password", autocomplete="new-password", aria_label="Confirm Password", required=True) }}
+        <span class="toggle-password" onclick="togglePassword('confirm_password')"><i class="fa fa-eye"></i></span>
+        <div class="invalid-feedback" id="confirmFeedback">Passwords do not match.</div>
+    </div>
+    <button type="submit" class="btn btn-primary w-100 py-2 animated-btn" id="signupBtn" disabled>{{ form.submit() }}</button>
+</form>
+<div id="validationMsg" class="mt-2"></div>
+<div class="text-center py-3"><a href="/login" class="text-primary">Already have an account? Login</a></div>{% if error %}<div class="alert alert-danger mx-3">{{ error }}</div>{% endif %}{% if success %}<div class="alert alert-success mx-3">{{ success }}</div>{% endif %}</div><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script><script>
+function togglePassword(id){const input=document.getElementById(id);if(input.type==='password'){input.type='text';}else{input.type='password';}}
+function checkStrength(pw){let score=0;if(pw.length>=8)score++;if(/[A-Z]/.test(pw))score++;if(/[0-9]/.test(pw))score++;if(/[^A-Za-z0-9]/.test(pw))score++;const bar=document.getElementById('strengthBarFill');let colors=['#e5e7eb','#ffc107','#28a745','#007bff'];bar.style.width=(score*25)+'%';bar.style.background=colors[score];}
+const emailInput=document.getElementById('email');
+const passwordInput=document.getElementById('password');
+const confirmInput=document.getElementById('confirm_password');
+const signupBtn=document.getElementById('signupBtn');
+function validateSignup(){
+    let valid=true;
+    if(!emailInput.value.match(/^\S+@\S+\.\S+$/)){
+        emailInput.classList.add('is-invalid');
+        document.getElementById('emailFeedback').style.display='block';
+        valid=false;
+    }else{
+        emailInput.classList.remove('is-invalid');
+        document.getElementById('emailFeedback').style.display='none';
+    }
+    if(passwordInput.value.length<8){
+        passwordInput.classList.add('is-invalid');
+        document.getElementById('passwordFeedback').style.display='block';
+        valid=false;
+    }else{
+        passwordInput.classList.remove('is-invalid');
+        document.getElementById('passwordFeedback').style.display='none';
+    }
+    if(passwordInput.value!==confirmInput.value||confirmInput.value.length<8){
+        confirmInput.classList.add('is-invalid');
+        document.getElementById('confirmFeedback').style.display='block';
+        valid=false;
+    }else{
+        confirmInput.classList.remove('is-invalid');
+        document.getElementById('confirmFeedback').style.display='none';
+    }
+    signupBtn.disabled=!valid;
+}
+emailInput.addEventListener('input',validateSignup);
+passwordInput.addEventListener('input',function(e){checkStrength(e.target.value);validateSignup();});
+confirmInput.addEventListener('input',validateSignup);
+document.querySelector('.signup-form').addEventListener('submit',function(e){validateSignup();if(signupBtn.disabled){e.preventDefault();}});
+</script>
+<style>.floating-label { position: absolute; left: 16px; top: 8px; font-size: 1rem; pointer-events: none; transition: 0.2s; color: #00c6ff; } .form-control:focus + .floating-label, .form-control:not(:placeholder-shown) + .floating-label { top: -18px; left: 8px; font-size: 0.9rem; color: #0093c4; background: #fff; padding: 0 4px; } .animated-btn { transition: transform 0.2s, box-shadow 0.2s; } .animated-btn:active { transform: scale(0.98); box-shadow: 0 2px 8px rgba(0,0,0,0.12); } .toggle-password { cursor: pointer; position: absolute; right: 16px; top: 38px; color: #007bff; }</style></body></html>

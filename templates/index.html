@@ -1,0 +1,168 @@
+<!-- File: index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1, width=device-width" />
+  <title>Web Scraper — Landing</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="icon" href="/static/favicon.ico" />
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg sticky-top border-bottom bg-cream">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="/">WebScraper</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel" data-bs-hideresize="true">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavLabel">Menu</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav me-auto gap-lg-2">
+            <li class="nav-item"><a class="nav-link" href="https://github.com/thatjosh/WebScraper/blob/main/README.md">About Web Scraper</a></li>
+            <li class="nav-item"><a class="nav-link" href="https://www.linkedin.com/in/joshuaangzhiyuan/">About Me</a></li>
+            <li class="nav-item"><a class="nav-link" href="/history">History</a></li>
+          </ul>
+          <div class="d-flex gap-2">
+            <a class="btn btn-outline-dark" href="/register">Sign Up</a>
+            <button class="btn btn-cta" data-bs-toggle="modal" data-bs-target="#loginModal">Login / Sign In</button>
+            <a class="btn btn-warning" href="/contact">Talk to sales</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-6 text-center text-lg-start">
+          <h1>Voice AI your customers will <span style="white-space:nowrap;">love.</span></h1>
+          <p class="lead mt-3">Easily extract data from any website with fast crawlers, proxy rotation, and human‑like call handoffs.</p>
+          <div class="d-flex flex-wrap gap-2 mt-3 justify-content-center justify-content-lg-start">
+            <button class="btn btn-cta" data-bs-toggle="modal" data-bs-target="#loginModal">Get started</button>
+            <a class="btn btn-outline-dark" href="#how">How it works</a>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="device-frame">
+            <div class="sms-banner">
+              <div class="sms-app">
+                <span class="sms-logo"></span>
+                <div>
+                  <div class="fw-semibold small">Call WebScraper AI</div>
+                  <div class="text-muted small">Make your customers happy!</div>
+                </div>
+                <div class="ms-auto small text-muted">9:41 AM</div>
+              </div>
+            </div>
+            <div class="phone-input">
+              <input type="tel" inputmode="tel" placeholder="Enter Phone Number" aria-label="Phone number demo" />
+            </div>
+            <div class="hero-cta">
+              <button class="btn w-100 btn-cta">Let’s Talk</button>
+            </div>
+          </div>
+          <div class="section-divider"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="py-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="d-flex align-items-start gap-3">
+            <div class="feature-icon">⚡</div>
+            <div><h5 class="mb-1">Fast & scalable</h5><p class="mb-0 text-secondary">Proxy rotation and smart rate‑limit for millions of pages/day.</p></div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="d-flex align-items-start gap-3">
+            <div class="feature-icon">🛡️</div>
+            <div><h5 class="mb-1">Anti‑bot evasion</h5><p class="mb-0 text-secondary">Headful stealth, CAPTCHA handoff, geo‑routing.</p></div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="d-flex align-items-start gap-3">
+            <div class="feature-icon">🔌</div>
+            <div><h5 class="mb-1">API & webhooks</h5><p class="mb-0 text-secondary">Trigger crawls and stream JSON to warehouses.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-4 mt-5 bg-dark text-white text-center">
+    © 2025 Web Scraper. All rights reserved.
+  </footer>
+
+  <!-- Modal -->
+  <?php /* or server‑side include; otherwise paste modal.html content here */ ?>
+  <div id="modal-root"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel">Login</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="loginForm">
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username" required>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+          </div>
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="remember">
+            <label class="form-check-label" for="remember">Remember Me</label>
+          </div>
+          <div class="mb-3 text-center">
+            <button type="button" class="btn btn-secondary" id="skipLoginBtn" style="margin-top:10px;">Skip Login</button>
+          </div>
+          <button type="submit" class="btn btn-primary w-100" id="loginBtn">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var loginForm = document.getElementById('loginForm');
+    var skipBtn = document.getElementById('skipLoginBtn');
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            if (username === 'kartik' && password === 'kartik') {
+                window.open('/', '_blank');
+            } else {
+                alert('Invalid credentials. Please use username: kartik and password: kartik');
+            }
+        });
+    }
+    if (skipBtn) {
+        skipBtn.addEventListener('click', function() {
+            window.location.href = "/";
+        });
+    }
+});
+</script>

@@ -1,0 +1,69 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Web Scraper</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background: linear-gradient(135deg,#007bff 0%,#00c6ff 100%); min-height: 100vh; }
+        .login-card { max-width: 420px; margin: 60px auto; box-shadow: 0 8px 32px rgba(0,0,0,0.18); border-radius: 18px; overflow: hidden; animation: fadeIn 1.2s; }
+        .login-header { background: linear-gradient(90deg,#007bff,#00c6ff); color: #fff; padding: 36px 24px 20px 24px; }
+        .login-title { font-size: 2.2rem; font-weight: 700; letter-spacing: 1px; }
+        .login-form { padding: 28px; }
+        .form-label { font-weight: 600; }
+        .btn-primary { background: linear-gradient(90deg,#007bff,#00c6ff); border: none; font-weight: 600; }
+        .btn-primary:hover { background: linear-gradient(90deg,#0056b3,#0093c4); }
+        .fa-user, .fa-lock { color: #007bff; margin-right: 8px; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mt-5">
+                    <div class="card-body">
+                        <h2 class="card-title text-center mb-4">Welcome</h2>
+                        <p class="text-center">This application is now fully public. No login or sign-in required.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    function togglePassword(id){const input=document.getElementById(id);if(input.type==='password'){input.type='text';}else{input.type='password';}}
+    function showForgotModal(){alert('Forgot Password functionality coming soon!');}
+    const emailInput=document.getElementById('email');
+    const passwordInput=document.getElementById('password');
+    const loginBtn=document.getElementById('loginBtn');
+    function validateLogin(){
+        let valid=true;
+        if(!emailInput.value.match(/^\S+@\S+\.\S+$/)){
+            emailInput.classList.add('is-invalid');
+            document.getElementById('emailFeedback').style.display='block';
+            valid=false;
+        }else{
+            emailInput.classList.remove('is-invalid');
+            document.getElementById('emailFeedback').style.display='none';
+        }
+        if(passwordInput.value.length<8){
+            passwordInput.classList.add('is-invalid');
+            document.getElementById('passwordFeedback').style.display='block';
+            valid=false;
+        }else{
+            passwordInput.classList.remove('is-invalid');
+            document.getElementById('passwordFeedback').style.display='none';
+        }
+        loginBtn.disabled=!valid;
+    }
+    emailInput.addEventListener('input',validateLogin);
+    passwordInput.addEventListener('input',validateLogin);
+    document.querySelector('.login-form').addEventListener('submit',function(e){validateLogin();if(loginBtn.disabled){e.preventDefault();}});
+    window.onload=function(){validateLogin();};
+    </script>
+    <style>.floating-label { position: absolute; left: 16px; top: 8px; font-size: 1rem; pointer-events: none; transition: 0.2s; color: #007bff; } .form-control:focus + .floating-label, .form-control:not(:placeholder-shown) + .floating-label { top: -18px; left: 8px; font-size: 0.9rem; color: #0056b3; background: #fff; padding: 0 4px; } .animated-btn { transition: transform 0.2s, box-shadow 0.2s; } .animated-btn:active { transform: scale(0.98); box-shadow: 0 2px 8px rgba(0,0,0,0.12); } .toggle-password { cursor: pointer; position: absolute; right: 16px; top: 38px; color: #007bff; }</style>
+    </script>
+</body>
+</html>

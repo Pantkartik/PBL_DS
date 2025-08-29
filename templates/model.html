@@ -1,0 +1,64 @@
+<!-- File: modal.html (updated) -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel">Login / Sign In</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="loginForm" novalidate>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="name@company.com" autocomplete="username" required />
+            <div id="emailHelp" class="invalid-feedback">Enter a valid email.</div>
+          </div>
+          <div class="mb-3 position-relative">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="••••••••" minlength="8" autocomplete="current-password" required />
+            <button type="button" class="btn btn-sm btn-link position-absolute end-0 top-0 mt-4 me-2" id="togglePwd" aria-controls="password" aria-pressed="false">Show</button>
+            <div class="invalid-feedback">Password must be at least 8 characters.</div>
+          </div>
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" id="remember" />
+            <label class="form-check-label" for="remember">Remember me</label>
+          </div>
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-cta" id="loginBtn">Login / Sign In</button>
+            <button type="button" class="btn btn-outline-secondary" id="skipLoginBtn">Skip login</button>
+          </div>
+          <p class="form-text mt-2">No account? <a href="/register">Create one</a></p>
+          <div class="visually-hidden" role="status" aria-live="assertive" id="formStatus"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Main Application Page -->
+<div class="container mt-5">
+  <h2 class="mb-4">Paste a Link to Start</h2>
+  <form id="linkForm">
+    <div class="mb-3">
+      <label for="linkInput" class="form-label">Enter URL</label>
+      <input type="url" class="form-control" id="linkInput" name="link" placeholder="https://example.com" required />
+      <div class="invalid-feedback">Please enter a valid URL.</div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  <div id="result" class="mt-4"></div>
+</div>
+<!-- Optionally add scripts for form validation and result display -->
+<script>
+document.getElementById('linkForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const link = document.getElementById('linkInput').value;
+  if (!link) {
+    document.getElementById('linkInput').classList.add('is-invalid');
+    return;
+  }
+  document.getElementById('linkInput').classList.remove('is-invalid');
+  document.getElementById('result').innerHTML = `<p>Processing: ${link}</p>`;
+  // You can add AJAX here to send the link to the backend
+});
+</script>
