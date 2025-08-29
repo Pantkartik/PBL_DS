@@ -1,0 +1,29 @@
+/* File: static/styles.css */
+:root{
+  --brand-bg:#0b0b0a;
+  --brand-cream:#fcfaf5;
+}
+body{background:var(--brand-cream);}
+.bg-cream{background:var(--brand-cream)!important;}
+.btn-cta{background:var(--brand-bg);color:#fff;border:0;border-radius:10px;padding:.6rem 1rem;}
+.btn-cta:hover{opacity:.92;}
+.hero{
+  background:linear-gradient(180deg,#fff 0%, #f7f4ea 60%, #efe9d9 100%);
+  padding:96px 0 48px 0;
+}
+.hero h1{
+  font-weight:800; letter-spacing:-.02em; line-height:1.1;
+  font-size:clamp(2rem,4vw+1rem,3.25rem); color:#111;
+}
+.hero .lead{font-size:clamp(1rem,1.2vw+.6rem,1.25rem); color:#333;}
+.device-frame{border:10px solid #111;border-radius:28px;background:#fff;box-shadow:0 20px 60px rgba(0,0,0,.12);max-width:360px;margin-inline:auto;overflow:hidden;}
+.sms-banner{background:#f5f5f5;padding:14px 16px;border-bottom:1px solid #eee;}
+.sms-app{display:flex;gap:10px;align-items:center;}
+.sms-logo{width:24px;height:24px;border-radius:6px;background:#111;display:inline-block}
+.phone-input{padding:16px;border:1px solid #e6e6e6;border-radius:12px;margin:14px 16px;}
+.phone-input input{border:0;outline:0;width:100%;}
+.hero-cta{margin:0 16px 18px 16px;}
+.section-divider{height:6px;background:linear-gradient(90deg,#000,#ff9900,#ff5e00,#000);border-radius:6px;margin-top:28px;}
+.feature-icon{width:44px;height:44px;border-radius:10px;background:#111;color:#fff;display:flex;align-items:center;justify-content:center;}
+.modal-backdrop.blur{backdrop-filter:blur(8px); background-color:rgba(0,0,0,.2)!important;}
+@media (min-width:992px){.hero{padding:120px 0 64px 0;}}
